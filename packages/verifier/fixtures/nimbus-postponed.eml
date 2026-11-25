@@ -1,0 +1,27 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nimbus.demo;
+ h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From; q=dns/txt; s=pakka; t=1799143200;
+ bh=QxVlBQGXsunlGe6tOOh0dOGY83rt8uBNh52KwgbLfvw=;
+ b=AZWpvoF7rAAnisp1Bl8Jb0mwRQ4If7OtI8dQsNdhJHADxXsI1UqRQHdjmrchx4OPLDu3YvXJx
+ jXm/Ry98HwMb0xojBq0YpyhYV0EJBT9SYmzFpWWkiOEc4d23nBSYah5nwf3nJaeQqapRCWTl2IL
+ +e8p5O5bx5qXoJ4OfRZILjk0LiKDTJTdB9lWyvLKDEs5VYjJ/g8imsSORtrs5a05w/brmxQ4DL5
+ JhseJo1UWhNfr3MWfi9NU+fUQ/yEn+90EATZQNR8tj55ZiUG8SRV0E1c7DgIKi8PW3yiLRrNIkk
+ hyvXmonXiSEmtcx9QhKfgGztfP9ppij4SqJOHfF+Y8pg==
+From: "Priya Raman - Nimbus Systems" <talent@nimbus.demo>
+To: aarav.sharma@student.demo
+Subject: Update on your joining date - Nimbus Systems
+Date: Tue, 05 Jan 2027 10:00:00 +0000
+Message-ID: <fixture-postponed@nimbus.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Dear Aarav Sharma,
+
+Due to business realignment, your onboarding as Associate Software Engineer has been postponed. Your revised joining date is 1 June 2027.
+
+Your offer remains valid. We regret the inconvenience.
+
+Regards,
+Priya Raman, Talent Acquisition
+Nimbus Systems

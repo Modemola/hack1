@@ -1,0 +1,31 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nimbus.demo;
+ h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From; q=dns/txt; s=pakka; t=1783675800;
+ bh=ZqCyqUTxUnALvcLqUGIy+UXo4EL7dFqQgNkTYI2bnfo=;
+ b=a72pms4unc2LAUHmxQtLua0oJpZgSKpB1u4WRQ76n437AucfWhqsQwjnRRHi2H1tSgrjMdgLT
+ VLsHiIXNizVrc6GhvoeIoTbl6hRscJeXQN9ILWxPqILbXw4ad5wzb9ywYzuPomsdlXXG7ws/GSp
+ 6GTPqyB+hxcDteKWWElAUQpf5NybQ6S3Zg6aW6RpzFq3gv5PZn2lfDqzRvF6NZh1LRWXB/0CFM/
+ AMGM1qB5bA3GG4D52saF2/lsxMzl7ZWEUvi/2qGcudMdJAIeW1AGWNrxz8K3UpBwvY+KigUhzi7
+ SeW0cGuR94F+T7WVR+sRR3fWjU2O/j5sf7DwnQPhuy4w==
+From: "Priya Raman - Nimbus Systems" <talent@nimbus.demo>
+To: aarav.sharma@student.demo
+Subject: Offer Letter - Associate Software Engineer - Nimbus Systems
+Date: Fri, 10 Jul 2026 09:30:00 +0000
+Message-ID: <fixture-offer@nimbus.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Dear Aarav Sharma,
+
+Congratulations! Following your campus interviews, we are pleased to offer you the position of Associate Software Engineer at Nimbus Systems.
+
+Your annual CTC will be ₹ 16,50,000 per annum. Your date of joining is 15 January 2027, at our Bengaluru office.
+
+Please confirm your acceptance by replying to this email within 7 days.
+
+We look forward to having you on the team.
+
+Warm regards,
+Priya Raman, Talent Acquisition
+Nimbus Systems

@@ -1,0 +1,11 @@
+{
+  "name": "pakka",
+  "private": true,
+  "description": "Pakka: job offers you can verify, and joining dates with money behind them.",
+  "scripts": {
+    "test": "pnpm -r test",
+    "test:contracts": "pnpm --filter @pakka/contracts test",
+    "test:verifier": "pnpm --filter @pakka/verifier test"
+  },
+  "packageManager": "pnpm@10.28.0"
+}

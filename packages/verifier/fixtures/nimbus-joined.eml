@@ -1,0 +1,25 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nimbus.demo;
+ h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From; q=dns/txt; s=pakka; t=1800007200;
+ bh=DVO65gu9IL5glVW8/WcPfVRpRfGxKpcXyhBtitc2uEU=;
+ b=WVorHHcwGBkPsc4ygyUOq70HMgBET0DIn2JsP5VVeLdH69QRi4+3hQJmVO2JCMnwelM8AWhNx
+ VCDS+yZNNLDvejP1K1hNOhy1oo9MC8uw6kBUcjz3U63/KNANcGdBZZshRMgidIlFyhrkqskatym
+ zEEgz3AUWLgfQsRVkUzfDFJ/ZWaYTegOaBd0rC/BSEfFhHTKgroY581DCWKWDhhwjF60f60A7J3
+ AFTgfy+MyQlUZXc5h4nPuu71RUdRCrjMJXJxVvQcwtD8Ys0OoG2w0TGrrljhDTZ9SWrs1s34HDu
+ T3XYWcjrlmWS+DYPAqf144N/mcrbnyYxNtWWP1DqrPtQ==
+From: "Priya Raman - Nimbus Systems" <talent@nimbus.demo>
+To: aarav.sharma@student.demo
+Subject: Welcome aboard, Aarav Sharma!
+Date: Fri, 15 Jan 2027 10:00:00 +0000
+Message-ID: <fixture-joined@nimbus.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Dear Aarav Sharma,
+
+Welcome to the team! You have successfully joined Nimbus Systems as Associate Software Engineer. Your employee ID and laptop are ready.
+
+Cheers,
+Priya Raman, Talent Acquisition
+Nimbus Systems

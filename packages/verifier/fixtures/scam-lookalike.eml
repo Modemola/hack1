@@ -1,0 +1,28 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tcs-onboarding.demo; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: To: From; q=dns/txt; s=pakka;
+ t=1783675800; bh=zKKn4saKu+TIs0MYhvYrAWY72Br0JZqeCwamy9rxDYY=;
+ b=CDSY4IWgzU+mdsvXQtkuu1VFeyIO8ejRshjtjzOndX0Q3qWO81AUfpJPu8CgEwQWyW12AWGVF
+ RAYRWfvi1u3lzpcQ7pUXcm7aBDX8DmoqJ2CiltZ0lzV9DVHe32mlVkfNBWy73oANaX9jMLMiEMD
+ vgLq6Pz6vcaywfOoFYeqdugRH4UWw1Og08XB8RS8oQAUWUhgDgTKMBBaMr1uS2yqWH5+Q7OCKL0
+ PgE9xWeXXb/hKaKb61e34Wd5vcXOhhyAvscDm8hegU9orY3S00f8iTHmuueB/JvRpq3loiNSfUx
+ 9Yv8nORd06GG0eKh4Nb2sFPUz4I8ZYlxBoy7emCD/L3g==
+From: "HR Desk - TCS Onboarding Desk" <hr.desk@tcs-onboarding.demo>
+To: aarav.sharma@student.demo
+Subject: TCS Offer Letter - Immediate Joining - Associate Software Engineer
+Date: Fri, 10 Jul 2026 09:30:00 +0000
+Message-ID: <fixture-scam@tcs-onboarding.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Dear Aarav Sharma,
+
+Congratulations! You are selected for the role of Associate Software Engineer at TCS without any interview. Your annual CTC will be ₹ 9,80,000 per annum and your date of joining is 15 January 2027.
+
+To confirm your seat, pay a refundable security deposit of ₹ 4,999 via UPI to tcs.onboarding@upi within 24 hours. Seats are limited.
+
+For queries contact our HR on WhatsApp: +91 98xxxxxx10.
+
+Regards,
+HR Desk

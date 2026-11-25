@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Signed email fixtures: keep exact bytes, DKIM signatures depend on them
+*.eml -text

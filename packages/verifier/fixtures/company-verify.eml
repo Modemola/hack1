@@ -1,0 +1,19 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nimbus.demo;
+ h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From; q=dns/txt; s=pakka; t=1783675800;
+ bh=nod2R0esN014d4WFDx3CPuXcc3qPMfH0rzhOqcE4o2I=;
+ b=g9jvnrLLROGVbl1Nw8kLy1wm610kpu6nhvvpCdnO6x4wF92vEcEDyJSfwbxLkhlTZkWZ8dWMZ
+ Hft5ww7YhJ0tofaXSciyRGS/EX+JihUWrCJFTw219wNuM3LKObCrBVLMV9opuc8z3DStS9Yvh4B
+ xPf3tC0XWj0Q6XIL6BNgUDXW1hGkAHGLljT7tWqIrxUjafW8hR+OEng0yQswltNMDrhIN/nA81q
+ eqMG5CD+uC/1Pb5d+B3vQ+T4jR8E3Pm6fvNkhQrqUqnKAEEz1xHrjKc706jD2SiiRIeCsdRTPBy
+ NEIXcqdvZWrlaTE++mOLYNBgbjVmydajvyg8OZOu4Hsg==
+From: "Priya Raman - Nimbus Systems" <talent@nimbus.demo>
+To: verify@pakka.app
+Subject: Pakka verify 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+Date: Fri, 10 Jul 2026 09:30:00 +0000
+Message-ID: <fixture-verify@nimbus.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+This email links the wallet 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 to nimbus.demo on Pakka.

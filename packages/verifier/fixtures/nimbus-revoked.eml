@@ -1,0 +1,27 @@
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nimbus.demo;
+ h=Content-Transfer-Encoding: Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From; q=dns/txt; s=pakka; t=1810807200;
+ bh=6IfIHfp5qzv6roeVf+Ye5czpJ/gPIZVFD5fLXSW8kR8=;
+ b=TwZLQYs9bj/jnZfDAioKdOznfVnkR1n0vdlXIB2KaHyRnHTHugPmgha1ABFmMw3NW614QAzQR
+ K//Cq1jj73XS8PDmE95xXf9EFlFG8wP34jcnMx5LYTL5ipLllxN8jcmb4BEACPxp7PjwRkXp+wO
+ jyvDAsoOOK+6QQhL4UBpWy4EOheF288MtGZAWmpgePxkK/0677s6N71s2n5LlllQdApl+dra/pE
+ fvyuBI3MW0wM9RL8/shsDHwpAsxPjWhV1kMy/Rib3XvXBT2MfZx4dWL1tXwT3rjwVhyE0bVp68i
+ ufyz5KTuCq13P+cqsROw02PEkfkDscMV3Cy0FMmK8vPA==
+From: "Priya Raman - Nimbus Systems" <talent@nimbus.demo>
+To: aarav.sharma@student.demo
+Subject: Regarding your offer - Nimbus Systems
+Date: Thu, 20 May 2027 10:00:00 +0000
+Message-ID: <fixture-revoked@nimbus.demo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Dear Aarav Sharma,
+
+We regret to inform you that due to changing business requirements, we are unable to proceed with your offer for the role of Associate Software Engineer. Your offer has been withdrawn.
+
+We wish you the very best.
+
+Regards,
+Priya Raman, Talent Acquisition
+Nimbus Systems
