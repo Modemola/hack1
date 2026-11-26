@@ -68,6 +68,7 @@ contract PakkaRegistry is EIP712, Ownable {
     mapping(bytes32 => bool) private _domainKnown;
     string[] private _domains;
     mapping(address => bytes32[]) private _offersOf;
+    mapping(bytes32 => bytes32[]) private _offersOfDomain;
 
     mapping(address => string) public companyDomain; // verified company wallet => domain
 
@@ -210,6 +211,10 @@ contract PakkaRegistry is EIP712, Ownable {
         return _offersOf[candidate];
     }
 
+    function offersOfDomain(string calldata domain) external view returns (bytes32[] memory) {
+        return _offersOfDomain[keccak256(bytes(domain))];
+    }
+
     function statsOf(string calldata domain) external view returns (Stats memory) {
         return _stats[keccak256(bytes(domain))];
     }
@@ -269,6 +274,7 @@ contract PakkaRegistry is EIP712, Ownable {
             domain: domain
         });
         _offersOf[candidate].push(offerId);
+        _offersOfDomain[keccak256(bytes(domain))].push(offerId);
         _statsFor(domain).offers++;
         emit OfferRecorded(offerId, candidate, domain, promisedDate, escrowed);
     }

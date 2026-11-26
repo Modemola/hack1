@@ -3,3 +3,6 @@ node_modules
 .env.local
 .DS_Store
 .next
+apps/web/e2e/screenshots
+*.tsbuildinfo
+next-env.d.ts

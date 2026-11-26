@@ -81,6 +81,7 @@ describe("PakkaRegistry", () => {
     expect((await registry.read.statsOf(["nimbus.demo"])).offers).to.equal(1);
     expect(await registry.read.allDomains()).to.deep.equal(["nimbus.demo"]);
     expect(await registry.read.offersOf([candidate.account.address])).to.deep.equal([message.offerId]);
+    expect(await registry.read.offersOfDomain(["nimbus.demo"])).to.deep.equal([message.offerId]);
 
     await expect(c.registry.write.submit([message, signature])).to.be.rejectedWith("EmailAlreadyUsed");
   });

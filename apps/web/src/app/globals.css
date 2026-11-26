@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #faf7f0;
+  --card: #ffffff;
+  --sunk: #f3efe4;
+  --ink: #15203b;
+  --muted: #5b6478;
+  --line: #e6e0d2;
+  --accent: #d9480f;
+  --accent-ink: #ffffff;
+  --accent-soft: #fff0e6;
+  --verified: #1e7f4f;
+  --verified-soft: #e7f5ec;
+  --danger: #c92a2a;
+  --danger-soft: #fdecec;
+  --warn: #a8661b;
+  --warn-soft: #fff4dc;
+  --shadow: 0 1px 2px rgb(21 32 59 / 0.06), 0 8px 24px rgb(21 32 59 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1220;
+    --card: #151c2e;
+    --sunk: #10172a;
+    --ink: #ede9df;
+    --muted: #9aa3b5;
+    --line: #26304a;
+    --accent: #ff7a2f;
+    --accent-ink: #1a0d05;
+    --accent-soft: #2a1a10;
+    --verified: #3cc47c;
+    --verified-soft: #10291d;
+    --danger: #ff6b6b;
+    --danger-soft: #2e1517;
+    --warn: #f2b544;
+    --warn-soft: #2b2312;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0d1220;
+  --card: #151c2e;
+  --sunk: #10172a;
+  --ink: #ede9df;
+  --muted: #9aa3b5;
+  --line: #26304a;
+  --accent: #ff7a2f;
+  --accent-ink: #1a0d05;
+  --accent-soft: #2a1a10;
+  --verified: #3cc47c;
+  --verified-soft: #10291d;
+  --danger: #ff6b6b;
+  --danger-soft: #2e1517;
+  --warn: #f2b544;
+  --warn-soft: #2b2312;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-verified: var(--verified);
+  --color-verified-soft: var(--verified-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transition: transform 0.08s ease, background-color 0.15s ease, opacity 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--sunk);
+}
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+.btn-sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 0.6rem;
+}
+
+.input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+/* The Pakka stamp: an office rubber stamp that lands on verified emails. */
+.stamp {
+  --stamp-color: var(--verified);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--stamp-color);
+  border: 4px double var(--stamp-color);
+  border-radius: 0.6rem;
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+  opacity: 0.92;
+  mask-image: radial-gradient(circle at 30% 40%, #000 60%, rgb(0 0 0 / 0.75) 61%, #000 75%),
+    repeating-linear-gradient(115deg, #000 0 6px, rgb(0 0 0 / 0.82) 6px 7px);
+  mask-composite: intersect;
+  user-select: none;
+}
+.stamp-danger {
+  --stamp-color: var(--danger);
+}
+.stamp-warn {
+  --stamp-color: var(--warn);
+}
+.stamp-in {
+  animation: stamp-in 0.45s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+@keyframes stamp-in {
+  0% {
+    transform: rotate(-8deg) scale(2.2);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-8deg) scale(1);
+    opacity: 0.92;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.35s ease both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-in,
+  .fade-up {
+    animation: none;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
