@@ -29,7 +29,8 @@ async function persona(page, who) {
   const page = await ctx.newPage();
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(String(e)));
-  page.setDefaultTimeout(30_000);
+  page.on("response", (r) => r.status() >= 400 && errors.push(`HTTP ${r.status()} ${r.request().method()} ${r.url().slice(0, 140)}`));
+  page.setDefaultTimeout(60_000);
 
   console.log("Candidate checks emails");
   await page.goto(BASE);
@@ -91,7 +92,12 @@ async function persona(page, who) {
   await page.getByRole("button", { name: /Accept offer/ }).click();
   await page.getByText("Accepted", { exact: true }).waitFor();
   await page.getByRole("button", { name: "+1 month" }).click();
-  await page.waitForTimeout(1500);
+  // Wait for the time-travel transaction to confirm and the stipend to start (slower on a real chain).
+  await page.waitForFunction(() => {
+    const t = document.querySelector('[data-testid="earned"]')?.textContent ?? "";
+    return t !== "" && t !== "$0.00";
+  }, null, { timeout: 60_000 });
+  await page.waitForTimeout(500);
   const a = await page.getByTestId("earned").innerText();
   await page.waitForTimeout(2500);
   const b = await page.getByTestId("earned").innerText();
@@ -138,7 +144,8 @@ async function persona(page, who) {
   await shot(m, "phone-guarantee");
 
   await browser.close();
-  const real = errors.filter((e) => !/Download the React DevTools|favicon/.test(e));
+  // Browsers log failed requests twice (as a response and as a console line); keep the URL lines.
+  const real = [...new Set(errors.filter((e) => !/Download the React DevTools|favicon|^Failed to load resource/.test(e)))];
   if (real.length) {
     console.log("Console errors:\n" + real.join("\n"));
     process.exitCode = 1;

@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   const balance = await publicClient.getBalance({ address: to });
   if (balance >= MIN_BALANCE) return NextResponse.json({ ok: true, funded: false });
 
-  if (rateLimited(`gas:addr:${to}`, 2, 60 * 60_000) || rateLimited(`gas:ip:${clientIp(req)}`, 10, 60 * 60_000)) {
+  if (rateLimited(`gas:addr:${to}`, 2, 60 * 60_000) || rateLimited(`gas:ip:${clientIp(req)}`, 40, 60 * 60_000)) {
     return NextResponse.json({ error: "Gas drip limit reached for now." }, { status: 429 });
   }
   try {

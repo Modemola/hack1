@@ -1,0 +1,13 @@
+{
+  "network": "baseSepolia",
+  "chainId": 84532,
+  "startBlock": 64057987,
+  "verifier": "0x3ACB6d0Cb65532A90665330f5FF4CbC0C68Cd185",
+  "demoMode": true,
+  "contracts": {
+    "TestUSD": "0x13423e285d2fafde534afedfce20fc188745f4a1",
+    "PakkaRegistry": "0x5c83d1257624cb1cf85d2820d68a3408bb5e3caf",
+    "JoiningGuarantee": "0x7fabf0ab3f26d476cd22c3736d02198b94551012"
+  },
+  "deployedAt": "2026-11-26T22:51:09.209Z"
+}

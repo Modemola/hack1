@@ -6,7 +6,6 @@ import {
   ContractFunctionRevertedError,
   createWalletClient,
   custom,
-  http,
   type Account,
   type Address,
   type EIP1193Provider,
@@ -15,7 +14,7 @@ import {
 } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { chain, rpcUrl } from "./config";
-import { publicClient } from "./chain";
+import { publicClient, rpcTransport } from "./chain";
 
 export type WalletKind = "guest" | "injected" | "coinbase";
 /** In guest mode one browser can play both sides of the demo. */
@@ -162,7 +161,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     try {
       if (k === "guest") {
         const account = privateKeyToAccount(guestKey(p));
-        const c = createWalletClient({ account, chain, transport: http(rpcUrl) });
+        const c = createWalletClient({ account, chain, transport: rpcTransport() });
         setClient(c);
         setAddress(account.address);
         void requestGas(account.address);

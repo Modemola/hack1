@@ -1,9 +1,10 @@
 import "server-only";
-import { createWalletClient, http, type Hex } from "viem";
+import { createWalletClient, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { hardhat } from "viem/chains";
 import type { AiOptions } from "@pakka/verifier";
-import { chain, rpcUrl } from "./config";
+import { chain } from "./config";
+import { rpcTransport } from "./chain";
 
 // Well-known Hardhat dev keys (accounts #0 and #1). Only ever used against a local chain.
 const HARDHAT_KEY_0 = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
@@ -26,7 +27,7 @@ export function verifierKey(): Hex {
 export function faucetWallet() {
   const k = key("FAUCET_PRIVATE_KEY", HARDHAT_KEY_0);
   if (!k) return null;
-  return createWalletClient({ account: privateKeyToAccount(k), chain, transport: http(rpcUrl) });
+  return createWalletClient({ account: privateKeyToAccount(k), chain, transport: rpcTransport() });
 }
 
 export function aiOptions(): AiOptions | false {
