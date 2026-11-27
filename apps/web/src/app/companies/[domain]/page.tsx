@@ -2,7 +2,7 @@
 
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Loader2, Lock } from "lucide-react";
+import { ArrowLeft, Loader2, Lock, Scale } from "lucide-react";
 import { getCompanyStats, getDomainOffers, type CompanyStats, type Offer } from "@/lib/pakka";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { StatusPill } from "@/components/StatusPill";
@@ -27,9 +27,14 @@ export default function CompanyPage({ params }: { params: Promise<{ domain: stri
 
   return (
     <div className="grid gap-6 max-w-3xl">
-      <Link href="/companies" className="text-sm text-muted hover:text-ink flex items-center gap-1">
-        <ArrowLeft className="size-4" /> All companies
-      </Link>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Link href="/companies" className="text-sm text-muted hover:text-ink flex items-center gap-1">
+          <ArrowLeft className="size-4" /> All companies
+        </Link>
+        <Link href={`/compare?d=${encodeURIComponent(domain)}`} className="text-sm text-muted hover:text-ink flex items-center gap-1">
+          <Scale className="size-4" /> Compare with another company
+        </Link>
+      </div>
       {error && <p className="text-sm text-danger">{error}</p>}
       {!stats && !error && (
         <p className="text-sm text-muted flex items-center gap-2">

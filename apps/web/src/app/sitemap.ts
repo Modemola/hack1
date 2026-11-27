@@ -7,7 +7,7 @@ import { siteUrl } from "@/lib/site";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const pages = ["", "/companies", "/activity"].map((p) => ({ url: `${siteUrl}${p}` }));
+  const pages = ["", "/companies", "/compare", "/activity"].map((p) => ({ url: `${siteUrl}${p}` }));
   if (!isConfigured) return pages;
   const domains = await publicClient
     .readContract({ address: addresses.registry, abi: pakkaRegistryAbi, functionName: "allDomains" })
