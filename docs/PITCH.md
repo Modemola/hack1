@@ -68,7 +68,8 @@ The DKIM verification is real and works on real emails from real domains. The co
 
 - [ ] Web app deployed (Vercel), with `VERIFIER_PRIVATE_KEY`, `FAUCET_PRIVATE_KEY` and `NEARAI_API_KEY` set
 - [ ] The deployer wallet has Base Sepolia ETH for the gas drip
-- [ ] Demo video recorded (script above)
+- [ ] Demo video recorded (script above; a captioned draft is in `docs/pakka-demo.mp4`)
+- [ ] Pitch deck: fill in the team name, members and demo link, then share it
 - [ ] Repository public, README up to date
 - [ ] Contract addresses in the submission form
 - [ ] Teammate added to the team on Hack4Hack (2–4 members required)
