@@ -6,7 +6,7 @@ import { StatusPill } from "@/components/StatusPill";
 import { addresses, addressUrl, chain, demoMode } from "@/lib/config";
 import { date, shortAddress, usd } from "@/lib/format";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Activity · Pakka",

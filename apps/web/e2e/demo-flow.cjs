@@ -47,7 +47,9 @@ async function persona(page, who) {
   await shot(page, "tampered-detected");
   await page.getByRole("button", { name: "Check another email" }).click();
 
+  const genuineRes = page.waitForResponse((r) => r.url().includes("/api/demo-email") && r.url().includes("kind=OFFER") && !r.url().includes("tamper"));
   await page.getByRole("button", { name: "Genuine offer" }).click();
+  const genuineEml = await (await genuineRes).text();
   await page.locator('[data-verdict="verified"]').waitFor();
   await shot(page, "genuine-verified");
 
@@ -58,8 +60,16 @@ async function persona(page, who) {
   await page.getByText("Recorded onchain.").waitFor();
   await shot(page, "offer-recorded");
 
+  console.log("Same email dropped again shows the existing record");
+  await page.getByRole("button", { name: "Check another email" }).click();
+  await page.locator('input[type="file"]').setInputFiles({ name: "offer.eml", mimeType: "message/rfc822", buffer: Buffer.from(genuineEml) });
+  await page.getByTestId("already-recorded").waitFor();
+  await page.getByText("You've already recorded this offer.").waitFor();
+  if (await page.getByRole("button", { name: "Record this offer on Pakka" }).count()) throw new Error("Record button shown for an already-recorded email");
+  await shot(page, "already-recorded");
+
   console.log("Candidate opens the shareable proof");
-  const proofHref = await page.getByRole("link", { name: "Share proof" }).getAttribute("href");
+  const proofHref = await page.getByRole("link", { name: "View public record" }).getAttribute("href");
   const proof = await ctx.newPage();
   await proof.goto(BASE + proofHref);
   await proof.getByText("Verified job offer").first().waitFor();

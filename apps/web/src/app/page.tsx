@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { ShieldCheck, ScrollText, HandCoins, ArrowRight } from "lucide-react";
 import { Verifier } from "@/components/Verifier";
 import { Leaderboard } from "@/components/Leaderboard";
 import { NetworkStats } from "@/components/NetworkStats";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 const STATS = [
   {
@@ -73,7 +74,9 @@ export default function Home() {
         <Verifier compact />
       </section>
 
-      <NetworkStats />
+      <Suspense fallback={null}>
+        <NetworkStats />
+      </Suspense>
 
       <section aria-labelledby="why">
         <h2 id="why" className="font-display text-2xl sm:text-3xl font-bold">

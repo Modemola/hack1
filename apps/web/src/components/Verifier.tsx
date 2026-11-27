@@ -8,9 +8,10 @@ import type { Hex } from "viem";
 import { VerdictCard } from "./VerdictCard";
 import { ConnectDialog } from "./WalletButton";
 import { useWallet } from "@/lib/wallet";
-import { getCandidateOffers, submitAttestation, type Offer, type SignedAttestation } from "@/lib/pakka";
+import { getCandidateOffers, getOffer, isEmailRecorded, submitAttestation, type Offer, type SignedAttestation } from "@/lib/pakka";
+import { StatusPill } from "./StatusPill";
 import { txUrl } from "@/lib/config";
-import { date } from "@/lib/format";
+import { date, shortAddress } from "@/lib/format";
 
 export const SAMPLES = [
   { id: "genuine", label: "Genuine offer", url: "/api/demo-email?company=nimbus&kind=OFFER" },
@@ -187,9 +188,28 @@ function RecordPanel({ report, eml }: { report: AnalysisReport; eml: string }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<{ hash: Hex } | null>(null);
+  // undefined while checking; null when the email isn't on the record yet.
+  const [existing, setExisting] = useState<{ offer: Offer | null } | null | undefined>(undefined);
 
   const k = report.email.kind;
   const isEvent = k === "POSTPONED" || k === "REVOKED" || k === "JOINED";
+
+  useEffect(() => {
+    const id = report.emailId as Hex | undefined;
+    if (!report.attestable || !id) return setExisting(null);
+    let live = true;
+    isEmailRecorded(id)
+      .then(async (used) => {
+        if (!used) return null;
+        return { offer: k === "OFFER" ? await getOffer(id) : null };
+      })
+      .then((v) => live && setExisting(v))
+      // If the check fails, still let the candidate try; the contract refuses duplicates anyway.
+      .catch(() => live && setExisting(null));
+    return () => {
+      live = false;
+    };
+  }, [report.attestable, report.emailId, k]);
 
   useEffect(() => {
     if (!isEvent || !address) return;
@@ -203,6 +223,13 @@ function RecordPanel({ report, eml }: { report: AnalysisReport; eml: string }) {
   }, [isEvent, address, report.dkim.domain]);
 
   if (!report.attestable) return null;
+  if (existing === undefined && !done)
+    return (
+      <p className="text-sm text-muted flex items-center gap-2">
+        <Loader2 className="size-4 animate-spin" /> Checking the public record…
+      </p>
+    );
+  if (existing && !done) return <AlreadyRecorded offer={existing.offer} mine={!!address && existing.offer?.candidate.toLowerCase() === address.toLowerCase()} />;
 
   const title =
     k === "OFFER"
@@ -311,6 +338,58 @@ function RecordPanel({ report, eml }: { report: AnalysisReport; eml: string }) {
       </div>
       {error && <p className="text-sm text-danger" role="alert">{error}</p>}
       {connectOpen && <ConnectDialog onClose={() => setConnectOpen(false)} />}
+    </div>
+  );
+}
+
+function AlreadyRecorded({ offer, mine }: { offer: Offer | null; mine: boolean }) {
+  if (!offer)
+    return (
+      <div className="card p-5 fade-up flex items-start gap-3 border-verified">
+        <Stamp className="size-6 text-verified shrink-0" aria-hidden />
+        <div>
+          <p className="font-semibold">This email is already on the record.</p>
+          <p className="text-sm text-muted">Each email can be recorded once, so there&apos;s nothing more to do with it.</p>
+        </div>
+      </div>
+    );
+  return (
+    <div className="card p-5 fade-up grid gap-3 border-verified" data-testid="already-recorded">
+      <div className="flex items-start gap-3">
+        <Stamp className="size-6 text-verified shrink-0" aria-hidden />
+        <div className="min-w-0">
+          <p className="font-semibold">{mine ? "You've already recorded this offer." : "This offer is already on Pakka's public record."}</p>
+          <p className="text-sm text-muted">
+            {mine
+              ? "Here's where it stands now."
+              : `Recorded by wallet ${shortAddress(offer.candidate)}. Each offer email can be recorded once, so its record can't be duplicated or taken over.`}
+          </p>
+        </div>
+      </div>
+      <dl className="grid sm:grid-cols-3 gap-3 text-sm">
+        <div>
+          <dt className="text-xs text-muted">Status</dt>
+          <dd className="mt-1">
+            <StatusPill status={offer.status} />
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs text-muted">Promised joining</dt>
+          <dd className="mt-1">{date(offer.promisedDate)}</dd>
+        </div>
+        <div>
+          <dt className="text-xs text-muted">Current joining</dt>
+          <dd className={`mt-1 ${offer.status === "DELAYED" ? "text-warn" : ""}`}>{offer.currentDate ? date(offer.currentDate) : "To be confirmed"}</dd>
+        </div>
+      </dl>
+      <div className="flex flex-wrap gap-2">
+        <Link className="btn btn-primary btn-sm" href={`/offer/${offer.id}`}>
+          <Share2 className="size-3.5" /> View public record
+        </Link>
+        <Link className="btn btn-ghost btn-sm" href={`/companies/${encodeURIComponent(offer.domain)}`}>
+          {offer.domain}&apos;s Promise Score
+        </Link>
+      </div>
     </div>
   );
 }

@@ -147,7 +147,7 @@ cd apps/web && node e2e/demo-flow.cjs http://localhost:3000
 
 - **Verifier (20 tests):** genuine, tampered, unsigned and lookalike-scam emails; signatures from another domain; free mailboxes; replay protection; date parsing; lookalike detection without false positives; EIP-712 signing; DNS-over-HTTPS parsing; AI failure handling.
 - **Contracts (18 tests):** attestation checks (signer, expiry, subject, replay), company verification, postponement / revocation / joining accounting and the Promise Score, silent-delay reporting, and every guarantee path (cancel, streaming stipend through a postponement, revoke payout, on-time and late joining, join claims and disputes, candidate withdrawal, demo mode off).
-- **End to end:** drives the whole two-sided demo in a real browser, as candidate and company, including the shareable proof page, its preview image and the badge, and checks the phone layout. It passes against both a local chain and Base Sepolia.
+- **End to end:** drives the whole two-sided demo in a real browser, as candidate and company, including dropping an already-recorded email, the shareable proof page, its preview image, the badge and the activity page, and checks the phone layout. It passes against a local chain; the read-only pages were also checked against the live Base Sepolia contracts.
 
 ## Roadmap
 

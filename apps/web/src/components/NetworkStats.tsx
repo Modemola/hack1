@@ -4,10 +4,22 @@ import { getNetworkSnapshot, type NetworkSnapshot } from "@/lib/network";
 import { isConfigured } from "@/lib/config";
 import { usd } from "@/lib/format";
 
+// A short per-instance cache: the pages stay fresh enough to show a just-recorded offer, while a
+// burst of visitors costs one set of chain reads rather than one per visit.
+const TTL_MS = 10_000;
+let cached: { at: number; value: Promise<NetworkSnapshot> } | null = null;
+
 export async function loadSnapshot(): Promise<NetworkSnapshot | null> {
   if (!isConfigured) return null;
+  if (!cached || Date.now() - cached.at > TTL_MS) {
+    const value = getNetworkSnapshot();
+    cached = { at: Date.now(), value };
+    value.catch(() => {
+      if (cached?.value === value) cached = null;
+    });
+  }
   try {
-    return await getNetworkSnapshot();
+    return await cached.value;
   } catch {
     return null;
   }

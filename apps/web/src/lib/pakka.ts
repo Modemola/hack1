@@ -119,6 +119,11 @@ export async function getCandidateOffers(candidate: Address): Promise<Offer[]> {
   return (await Promise.all(ids.map(getOffer))).reverse();
 }
 
+/** Each email can be recorded once. True when this email (by its signature fingerprint) is already on the record. */
+export async function isEmailRecorded(emailId: Hex): Promise<boolean> {
+  return publicClient.readContract({ ...registry, functionName: "emailUsed", args: [emailId] });
+}
+
 export async function getCompanyDomain(wallet: Address): Promise<string> {
   return publicClient.readContract({ ...registry, functionName: "companyDomain", args: [wallet] });
 }
