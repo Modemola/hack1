@@ -6,6 +6,7 @@ import { ArrowLeft, Loader2, Lock } from "lucide-react";
 import { getCompanyStats, getDomainOffers, type CompanyStats, type Offer } from "@/lib/pakka";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { StatusPill } from "@/components/StatusPill";
+import { BadgeEmbed } from "@/components/BadgeEmbed";
 import { date, plural, shortAddress } from "@/lib/format";
 
 export default function CompanyPage({ params }: { params: Promise<{ domain: string }> }) {
@@ -81,11 +82,14 @@ export default function CompanyPage({ params }: { params: Promise<{ domain: stri
                     </span>
                   )}
                   {o.selfReportedDelay && <span className="text-xs text-muted">delay reported by candidate</span>}
-                  <span className="ml-auto text-xs text-muted font-mono">{shortAddress(o.id)}</span>
+                  <Link href={`/offer/${o.id}`} className="ml-auto text-xs text-muted font-mono hover:text-ink underline-offset-2 hover:underline" title="Open this offer's public record">
+                    {shortAddress(o.id)}
+                  </Link>
                 </li>
               ))}
             </ul>
           </section>
+          <BadgeEmbed domain={domain} />
         </>
       )}
     </div>

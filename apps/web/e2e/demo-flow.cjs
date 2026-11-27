@@ -58,6 +58,18 @@ async function persona(page, who) {
   await page.getByText("Recorded onchain.").waitFor();
   await shot(page, "offer-recorded");
 
+  console.log("Candidate opens the shareable proof");
+  const proofHref = await page.getByRole("link", { name: "Share proof" }).getAttribute("href");
+  const proof = await ctx.newPage();
+  await proof.goto(BASE + proofHref);
+  await proof.getByText("Verified job offer").first().waitFor();
+  await proof.getByRole("button", { name: "Copy link" }).waitFor();
+  const og = await proof.locator('meta[property="og:image"]').getAttribute("content");
+  const ogRes = await proof.request.get(og.replace(/^https?:\/\/[^/]+/, BASE));
+  if (!ogRes.ok() || !/image\/png/.test(ogRes.headers()["content-type"] ?? "")) throw new Error(`Preview image failed: ${ogRes.status()}`);
+  await shot(proof, "offer-proof");
+  await proof.close();
+
   console.log("Candidate records a postponement email from the same company");
   const postponed = await page.evaluate(async () => (await fetch("/api/demo-email?company=nimbus&kind=POSTPONED")).text());
   await page.getByRole("button", { name: "Check another email" }).click();
@@ -122,6 +134,9 @@ async function persona(page, who) {
   await shot(page, "leaderboard");
   await page.goto(`${BASE}/companies/nimbus.demo`);
   await page.getByText("Offers on record").waitFor();
+  await page.getByRole("img", { name: /Pakka Promise Score for nimbus.demo/ }).waitFor();
+  const badge = await page.request.get(`${BASE}/api/badge/nimbus.demo`);
+  if (!badge.ok() || !(await badge.text()).includes("Pakka Promise Score")) throw new Error("Badge endpoint failed");
   await shot(page, "company-score");
 
   await persona(page, "Candidate");

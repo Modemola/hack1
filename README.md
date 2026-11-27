@@ -21,6 +21,8 @@ An offer letter is a promise with no teeth.
 | **Promise Score** | See which companies keep their word before you accept. | Built only from verified emails and escrowed offers, never anonymous reviews. On time = 1 point, late or delayed = 0.5, revoked = 0. Nobody, including us, can edit it. |
 | **Guarantee** | Get offers with money behind them. | A company proves its domain with a DKIM-signed email (`Pakka verify 0x…`), then locks a **joining guarantee** in stablecoins in `JoiningGuarantee`. If joining slips past the promised date plus grace, a **stipend streams to the candidate every second**; postponing doesn't pause it. If the company revokes, the candidate gets everything left. Join on time and the company gets it all back. |
 
+| **Share** | Prove your offer to family, a bank or a college without sending the letter. | Every recorded offer gets a public page (`/offer/<id>`) with a link-preview image for LinkedIn and WhatsApp. Companies get a live **Promise Score badge** (`/api/badge/<domain>`) to embed on their careers page. |
+
 Candidates get value on day one, before any employer signs up: verification and the Promise Score need nothing from the company. The guarantee is the premium tier employers opt into.
 
 ## Demo video
@@ -63,7 +65,7 @@ flowchart LR
 ```
 packages/verifier   DKIM verification, offer extraction, red flags, AI read, attestation signing, demo emails
 packages/contracts  PakkaRegistry, JoiningGuarantee, TestUSD (Hardhat, Solidity 0.8.28)
-apps/web            Next.js app and API routes (/api/verify, /api/attest, /api/demo-email, /api/gas)
+apps/web            Next.js app and API routes (/api/verify, /api/attest, /api/demo-email, /api/gas, /api/badge)
 ```
 
 ### Trust model
@@ -107,6 +109,7 @@ To use the Base Sepolia deployment instead, skip the chain and deploy steps: `ap
 | `VERIFIER_PRIVATE_KEY` | Signs attestations. Must match the registry's `verifier`. |
 | `FAUCET_PRIVATE_KEY` | Funds the gas drip that gives guest wallets test ETH. |
 | `NEARAI_API_KEY` | Optional AI read of emails (NEAR AI Cloud). Set `PAKKA_AI=off` to disable. |
+| `NEXT_PUBLIC_SITE_URL` | Optional public URL for link previews; on Vercel the production URL is used automatically. |
 | `NEXT_PUBLIC_RPC_URL` | Optional dedicated RPC; public Base Sepolia endpoints are used with fallbacks otherwise. |
 
 ### Deploy the web app (Vercel)
@@ -143,7 +146,7 @@ cd apps/web && node e2e/demo-flow.cjs http://localhost:3000
 
 - **Verifier (20 tests):** genuine, tampered, unsigned and lookalike-scam emails; signatures from another domain; free mailboxes; replay protection; date parsing; lookalike detection without false positives; EIP-712 signing; DNS-over-HTTPS parsing; AI failure handling.
 - **Contracts (18 tests):** attestation checks (signer, expiry, subject, replay), company verification, postponement / revocation / joining accounting and the Promise Score, silent-delay reporting, and every guarantee path (cancel, streaming stipend through a postponement, revoke payout, on-time and late joining, join claims and disputes, candidate withdrawal, demo mode off).
-- **End to end:** drives the whole two-sided demo in a real browser, as candidate and company, and checks the phone layout. It passes against both a local chain and Base Sepolia.
+- **End to end:** drives the whole two-sided demo in a real browser, as candidate and company, including the shareable proof page, its preview image and the badge, and checks the phone layout. It passes against both a local chain and Base Sepolia.
 
 ## Roadmap
 

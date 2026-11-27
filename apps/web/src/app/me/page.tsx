@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { Loader2, Lock, ChevronRight, Clock } from "lucide-react";
+import { Loader2, Lock, ChevronRight, Clock, Share2 } from "lucide-react";
 import { useWallet } from "@/lib/wallet";
 import { getCandidateOffers, getGuarantee, getGuaranteeIds, reportSilentDelay, type Guarantee, type Offer } from "@/lib/pakka";
 import { StatusPill } from "@/components/StatusPill";
@@ -100,6 +100,9 @@ export default function MyOffersPage() {
                     Promised {date(o.promisedDate)}
                     {o.status === "DELAYED" ? ` → ${o.currentDate ? date(o.currentDate) : "no new date"}` : ""}
                   </span>
+                  <Link href={`/offer/${o.id}`} className="btn btn-ghost btn-sm">
+                    <Share2 className="size-3.5" aria-hidden /> Share proof
+                  </Link>
                 </div>
                 {overdue && (
                   <div className="flex flex-wrap items-center gap-3 bg-warn-soft rounded-lg px-3 py-2 text-sm">

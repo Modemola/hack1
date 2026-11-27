@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Upload, FileCheck2, Loader2, RotateCcw, ExternalLink, HelpCircle, Stamp } from "lucide-react";
+import { Upload, FileCheck2, Loader2, RotateCcw, ExternalLink, HelpCircle, Stamp, Share2 } from "lucide-react";
 import type { AnalysisReport } from "@pakka/verifier";
 import type { Hex } from "viem";
 import { VerdictCard } from "./VerdictCard";
@@ -253,7 +253,12 @@ function RecordPanel({ report, eml }: { report: AnalysisReport; eml: string }) {
             {k === "COMPANY_VERIFY" ? "Your wallet now speaks for " + report.dkim.domain + "." : "It's now part of " + report.dkim.domain + "'s public record."}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          {k === "OFFER" && report.emailId && (
+            <Link className="btn btn-ghost btn-sm" href={`/offer/${report.emailId}`}>
+              <Share2 className="size-3.5" /> Share proof
+            </Link>
+          )}
           {url && (
             <a className="btn btn-ghost btn-sm" href={url} target="_blank" rel="noreferrer">
               Transaction <ExternalLink className="size-3.5" />
