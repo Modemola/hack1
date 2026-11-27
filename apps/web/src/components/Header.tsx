@@ -8,6 +8,7 @@ const NAV = [
   { href: "/", label: "Verify" },
   { href: "/companies", label: "Promise Scores" },
   { href: "/me", label: "My offers" },
+  { href: "/activity", label: "Activity" },
   { href: "/employer", label: "Employers" },
 ];
 

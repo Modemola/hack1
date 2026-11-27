@@ -138,6 +138,10 @@ async function persona(page, who) {
   const badge = await page.request.get(`${BASE}/api/badge/nimbus.demo`);
   if (!badge.ok() || !(await badge.text()).includes("Pakka Promise Score")) throw new Error("Badge endpoint failed");
   await shot(page, "company-score");
+  await page.goto(`${BASE}/activity`);
+  await page.getByText("Latest joining guarantees").waitFor();
+  await page.getByText("nimbus.demo").first().waitFor();
+  await shot(page, "activity");
 
   await persona(page, "Candidate");
   await page.goto(`${BASE}/me`);

@@ -22,6 +22,7 @@ An offer letter is a promise with no teeth.
 | **Guarantee** | Get offers with money behind them. | A company proves its domain with a DKIM-signed email (`Pakka verify 0x…`), then locks a **joining guarantee** in stablecoins in `JoiningGuarantee`. If joining slips past the promised date plus grace, a **stipend streams to the candidate every second**; postponing doesn't pause it. If the company revokes, the candidate gets everything left. Join on time and the company gets it all back. |
 
 | **Share** | Prove your offer to family, a bank or a college without sending the letter. | Every recorded offer gets a public page (`/offer/<id>`) with a link-preview image for LinkedIn and WhatsApp. Companies get a live **Promise Score badge** (`/api/badge/<domain>`) to embed on their careers page. |
+| **Audit** | See the whole network at a glance. | The home page and `/activity` show totals read straight from contract state (offers, delays, revocations, money locked and paid to candidates), with the latest offers and guarantees. No indexer or database. |
 
 Candidates get value on day one, before any employer signs up: verification and the Promise Score need nothing from the company. The guarantee is the premium tier employers opt into.
 

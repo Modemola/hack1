@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ShieldCheck, ScrollText, HandCoins, ArrowRight } from "lucide-react";
 import { Verifier } from "@/components/Verifier";
 import { Leaderboard } from "@/components/Leaderboard";
+import { NetworkStats } from "@/components/NetworkStats";
+
+export const revalidate = 60;
 
 const STATS = [
   {
@@ -69,6 +72,8 @@ export default function Home() {
         </div>
         <Verifier compact />
       </section>
+
+      <NetworkStats />
 
       <section aria-labelledby="why">
         <h2 id="why" className="font-display text-2xl sm:text-3xl font-bold">
