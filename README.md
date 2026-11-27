@@ -23,6 +23,10 @@ An offer letter is a promise with no teeth.
 
 Candidates get value on day one, before any employer signs up: verification and the Promise Score need nothing from the company. The guarantee is the premium tier employers opt into.
 
+## Demo video
+
+[`docs/pakka-demo.mp4`](docs/pakka-demo.mp4) is a 2:50 captioned walkthrough recorded against the live Base Sepolia contracts. Re-record it with `node apps/web/e2e/record-demo.cjs http://localhost:3000`.
+
 ## Try it
 
 Run the app (see below) or open the deployed demo, then:

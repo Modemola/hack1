@@ -34,6 +34,8 @@ Pakka makes a job offer something you can verify and something with money behind
 | 1:45 | Promise Score page | "And the company's Promise Score drops, publicly and permanently." |
 | 1:55 | Home | "Pakka. Make every offer pakka." |
 
+A captioned silent version is already in [`pakka-demo.mp4`](pakka-demo.mp4); record your own voice-over over it or redo it live.
+
 Record at 1280×800, browser zoom 110%, and do one dry run first so the guest wallets already have gas.
 
 ## Questions judges will ask
